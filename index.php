@@ -8,7 +8,7 @@ include('_core/_includes/config.php');
   $gowww = $httprotocol.$simple_url;
   $firstdomain = explode(".", $simple_url);
   $firstdomain = $firstdomain[0];
-  //test
+//testando commit
 
   // Mapeando subdominio
   $insubdominio = parse_url(isset($_SERVER['HTTP_HOST']), PHP_URL_HOST);
