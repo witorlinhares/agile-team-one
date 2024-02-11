@@ -1,8 +1,8 @@
 RewriteEngine On
-RewriteBase /var/www/ominichanel.dev
+RewriteBase c:/xampp/htdocs/agile-team-one
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{HTTP_HOST} ^([a-z0-9-]+).ominichanel.dev [NC]
+RewriteCond %{HTTP_HOST} ^([a-z0-9-]+).agile.dev.com [NC]
 RewriteRule (.*) index.php?insubdominio=%1&inrouter=$1 [NC,L,QSA]
 ErrorDocument 404 /404.php
 
