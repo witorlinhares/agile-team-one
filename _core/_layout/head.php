@@ -4,7 +4,9 @@ global $seo_subtitle;
 global $seo_description;
 global $seo_keywords;
 global $seo_image;
-$insubdominiourl = array_shift((explode('.', $_SERVER['HTTP_HOST'])));
+$insubdominiourl = ((explode('.', $_SERVER['HTTP_HOST'])));
+// $insubdominiourl = array_shift((explode('.', $_SERVER['HTTP_HOST'])));
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -62,7 +64,7 @@ $insubdominiourl = array_shift((explode('.', $_SERVER['HTTP_HOST'])));
 
   <?php
 
-  if( $_GET['afiliado'] ) {
+  if(isset( $_GET['afiliado']) ) {
     $_SESSION['afiliado'] = mysqli_real_escape_string( $db_con, $_GET['afiliado'] );
   }
 
