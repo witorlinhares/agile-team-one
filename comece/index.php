@@ -60,7 +60,7 @@ $afiliado = (isset($_SESSION['afiliado']));
 
                     <!--Informação de 30 dias pagina comece-->
                     <span class="text">
-						Ao se cadastrar você ganha<strong> 60 dias </strong>para testar
+						Ao se cadastrar você ganha<strong> 30 dias </strong>para testar
                         nossa<br>plataforma, criar seu catálogo e impulsionar suas vendas.</br>
 					</span>
 
