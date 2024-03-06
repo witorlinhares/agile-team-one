@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="<?php just_url(); ?>/_core/_cdn/sidr/css/jquery.sidr.light.min.css">
     <link rel="stylesheet" href="<?php just_url(); ?>/_core/_cdn/steps/css/jquery.steps.min.css">
     <link rel="stylesheet" href="<?php just_url(); ?>/_core/_cdn/multiUpload/css/image-uploader.min.css">
-    <link rel="stylesheet" href="<?php just_url(); ?>/painel/_layout/style.php?id=<?php echo isset($_SESSION['estabelecimento']['id']); ?>">
+    <link rel="stylesheet" href="<?php just_url(); ?>/painel/_layout/style.php?id=<?php echo ($_SESSION['estabelecimento']['id']); ?>">
 
     <?php system_header(); ?>
 

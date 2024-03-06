@@ -10,8 +10,8 @@
 
 					<div class="brand">
 						<a href="<?php panel_url(); ?>">
-							<img src="<?php echo thumber( isset($_SESSION['estabelecimento']['perfil']), 150 ); ?>" alt="<?php echo isset($_SESSION['estabelecimento']['nome']); ?>"/>
-							<span><?php echo isset($_SESSION['estabelecimento']['nome']); ?><strong class="colored">.</strong></span>
+							<img src="<?php echo thumber( ($_SESSION['estabelecimento']['perfil']), 150 ); ?>" alt="<?php echo ($_SESSION['estabelecimento']['nome']); ?>"/>
+							<span><?php echo ($_SESSION['estabelecimento']['nome']); ?><strong class="colored"></strong></span>
 						</a>
 					</div>
 

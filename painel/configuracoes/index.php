@@ -1880,7 +1880,7 @@ $(document).ready( function() {
           $('#the_form').trigger("change");
       },
       onFinishing: function (event, currentIndex){
-          form.validate().settings.ignore = ":disabled";
+          form.validate().settings.ignore = ":enabled";
           return form.valid();
           $('#the_form').trigger("change");
       },
