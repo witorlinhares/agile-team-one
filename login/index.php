@@ -71,8 +71,8 @@ if ("serviceWorker" in navigator) {
 		<?php
 
 		$redirect = mysqli_real_escape_string( $db_con, $_GET['redirect'] );
-		// if( !$redirect ) {
-		// 	$redirect = $_SERVER['HTTP_REFERER'];
+		// if( !$redirect) {
+		// 	$redirect = ($_SERVER['HTTP_REFERER']);
 		// }
 		$email = strtolower( mysqli_real_escape_string( $db_con, $_POST['email'] ) );
 		$pass = mysqli_real_escape_string( $db_con, $_POST['pass'] );
@@ -176,7 +176,7 @@ if ("serviceWorker" in navigator) {
 														<div class="form-field form-field-icon form-field-text">
 
 															<i class="form-icon lni lni-user"></i>
-															<input type="text" name="email" placeholder="E-mail" value="<?php echo htmlclean( $_GET['email'] ); ?>"/>
+															<input type="text" name="email" placeholder="E-mail" value="<?php echo htmlclean( $_GET['email']) ; ?>"/>
 
 														</div>
 

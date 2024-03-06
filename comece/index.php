@@ -52,17 +52,23 @@ $afiliado = (isset($_SESSION['afiliado']));
                 <div class="adicionado comece">
 
 
-                    <span class="text">
+                    <!-- <span class="text">
                         Ao se cadastrar você ganha <br />
-                        <strong><?php echo data_info( "planos",$plano_default,"duracao_dias" ); ?> dias</strong>
+                        <strong><?php echo data_info( "planos",$plano_default,"duracao_dias" ); ?>30 dias</strong>
                         <br />para testar nossa plataforma, criar seu catálogo e impulsionar suas vendas.
-                    </span>
+                    </span> -->
 
-                    <!--
-					<span class="text">
-						Ao se cadastrar você pode testar nossa plataforma, criar seu catálogo e impulsionar suas vendas.
+                    <!--Informação de 30 dias pagina comece-->
+                    <span class="text">
+						Ao se cadastrar você ganha<strong> 30 dias </strong>para testar
+                        nossa<br>plataforma, criar seu catálogo e impulsionar suas vendas.</br>
 					</span>
-					-->
+
+                    
+					<!-- <span class="text">
+						Ao se cadastrar você pode testar nossa plataforma, criar seu catálogo e impulsionar suas vendas.
+					</span> -->
+					
                     <a href="<?php echo just_url(); ?>/comece/cadastrar" class="botao-acao"><i
                             class="lni lni-rocket"></i> <span>Quero me cadastrar</span></a>
 
