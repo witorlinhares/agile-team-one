@@ -433,7 +433,7 @@ function uploadpath() {
 }
 
 function gera_thumb( $file,$largura,$altura ) {
-   
+
   global $rootpath;
   $uploadpath = $rootpath."/_core/_uploads";
 
@@ -525,7 +525,7 @@ function gera_thumb( $file,$largura,$altura ) {
 
         if( imagejpeg( $new,$uploadpathfull."/".$new_name ) ) {;
            $uploadinfo['status'] = "1";
-           $uploadinfo['url'] = isset($uploadpathreturn)."/".$new_name;
+           $uploadinfo['url'] = $uploadpathreturn."/".$new_name;
            return $uploadinfo;
         } else {
            $uploadinfo['status'] = "2";
@@ -595,20 +595,18 @@ function gera_thumb( $file,$largura,$altura ) {
 
 } 
 
-function thumber( $img, $width ) {
+function thumber( $img,$width ) {
 
   global $rootpath;
   $uploadpath = $rootpath."/_core/_uploads/";
   $width = "512";
-  $thumb= '';
-  $thumb = explode( ".", isset($img ));
-  if($thumb){
-   $thumb_name = isset($thumb[0])."_thumb";
-   $thumb_extension = isset($thumb[1]);
-   $thumb = $thumb_name.".".$thumb_extension;
-   $file = $uploadpath.$thumb;
-  }
-  
+
+  $thumb = explode( ".",$img );
+  $thumb_name = $thumb[0]."_thumb";
+  $thumb_extension = $thumb[1];
+  $thumb = $thumb_name.".".$thumb_extension;
+  $file = $uploadpath.$thumb;
+
   if( file_exists($file) ) {
     $thumburl = $thumb;
   } else {

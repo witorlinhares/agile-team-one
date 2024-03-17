@@ -51,8 +51,8 @@
 			</ul>
 		</li>
 		<li><a href="<?php just_url(); ?>/logout">Sair</a></li>
-		<!--
-		<li class="visible-sm visible-xs"><a href="<?php echo $suport_url; ?>" target="_blank">Ajuda</a></li> -->
+		
+		<li class="visible-sm visible-xs"><a href="<?php echo $suport_url; ?>" target="_blank">Ajuda</a></li>
 		
 	</ul>
 </nav> 
@@ -65,7 +65,7 @@ $meudominio = $httprotocol.data_info("estabelecimentos",$_SESSION['estabelecimen
 
 <nav class="navbar pull-right hidden-xs hidden-sm">
 	<ul class="nav navbar-nav">
-		<li class="active"><a href="<?php echo $meudominio; ?>" target="_blank"><i class="lni lni-home"></i> Ver meu catalogo</a></li>
+		<li class="active"><a href="<?php echo $meudominio; ?>" target="_blank"><i class="lni lni-home"></i> Ver meu catálogo</a></li>
 	</ul>
 </nav> 
 

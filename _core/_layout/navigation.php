@@ -4,8 +4,7 @@ global $simple_url;
 <nav class="navbar pull-left">
 	<ul class="nav navbar-nav">
 		<li class="active"><a href="<?php just_url(); ?>">Ínicio</a></li>
-		<li><a href="https://conheca.<?php echo $simple_url; ?>">Conheça</a></li>
-		<li><a href="<?php just_url(); ?>/comece">Comece a vender</a></li>
+		<li><a href="<?php just_url(); ?>/conheca">Conheça</a></li>
 		<li><a href="https://<?php echo $simple_url; ?>/localizacao">Marketplace</a></li>
 	</ul>
 </nav> 

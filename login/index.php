@@ -135,7 +135,7 @@ if ("serviceWorker" in navigator) {
 
 												</div>
 
-												<?php if( $_GET['msg'] == "erro" ) { ?>
+												<?php if(isset( $_GET['msg']) && $_GET['msg'] == "erro" ) { ?>
 
 												<div class="row">
 
@@ -152,7 +152,7 @@ if ("serviceWorker" in navigator) {
 
 												<?php } ?>
 
-												<?php if( $_GET['msg'] == "alterada" ) { ?>
+												<?php if(isset( $_GET['msg']) && $_GET['msg'] == "alterada" ) { ?>
 
 												<div class="row">
 
@@ -176,7 +176,7 @@ if ("serviceWorker" in navigator) {
 														<div class="form-field form-field-icon form-field-text">
 
 															<i class="form-icon lni lni-user"></i>
-															<input type="text" name="email" placeholder="E-mail" value="<?php echo htmlclean( $_GET['email']) ; ?>"/>
+															<input type="text" name="email" placeholder="E-mail" value="<?php echo htmlclean(isset( $_GET['email'])) ; ?>"/>
 
 														</div>
 

@@ -1,6 +1,6 @@
 <?php
 // CORE
-//include('../_core/_includes/config.php');
+include('../_core/_includes/config.php');
 
 global $httprotocol;
 global $simple_url;
@@ -162,7 +162,7 @@ if( isset($_COOKIE['cidade']) ) {
 								                          <select id="input-cidade-choose" name="cidade">
 
 								                            <option value="">Cidade</option>
-
+							
 								                          </select>
 								                          <div class="clear"></div>
 								                      </div>

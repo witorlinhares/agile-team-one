@@ -4,6 +4,6 @@ services:
     container_name: 'EstouOn'
     image: php:8.2-apache
   volumes:
-  - ./teste.estouon.app.br:/var/www/html/
+  - ./agile.dev.com:/var/www/html/
   ports:
       - 8080:80
