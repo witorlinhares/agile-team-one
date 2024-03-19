@@ -3,7 +3,7 @@
 include('../../_core/_includes/config.php');
 // RESTRICT
 restrict(2);
-atualiza_estabelecimento( isset($_SESSION['estabelecimento']['id']), "online" );
+atualiza_estabelecimento( $_SESSION['estabelecimento']['id'], "online" );
 // SEO
 $seo_subtitle = "Integração";
 $seo_description = "";
@@ -16,11 +16,11 @@ include('../_layout/sidebars.php');
 include('../_layout/modal.php');
 
 global $db_con;
-$eid = isset($_SESSION['estabelecimento']['id']); //estabelecimento logado
+$eid = isset($_SESSION['estabelecimento']['id']) ? $_SESSION['estabelecimento']['id'] : ''; //estabelecimento logado
 $meudominio = $httprotocol.data_info("estabelecimentos",$_SESSION['estabelecimento']['id'],"subdominio").".".$simple_url;
 
 // Id do estabelecimento logado 
-$id = $_SESSION['estabelecimento']['id'];
+$id = isset($_SESSION['estabelecimento']['id']) ? $_SESSION['estabelecimento']['id'] : '';
 
 // Variáveis de inicialização
 $public_key = "";
@@ -57,8 +57,8 @@ if (isset($_POST['formdata'])) {
 function update_estabelecimento( $db_con, $public_key, $secret_key, $id)
 {
 	// Sanitizar os dados
-    $public_key = mysqli_real_escape_string($db_con, $public_key);
-    $secret_key = mysqli_real_escape_string($db_con, $secret_key);
+    $public_key = isset($public_key) ? mysqli_real_escape_string($db_con, $public_key) : '';
+    $secret_key = isset($secret_key) ? mysqli_real_escape_string($db_con, $secret_key) : '';
 
 	// Preparar a consulta SQL
     $sql = "UPDATE estabelecimentos SET public_key = ?, secret_key = ? WHERE id = ?";
@@ -122,72 +122,72 @@ if (isset($formdata)) {
 
 <div class="middle minfit bg-gray">
 
-    <div class="container">
+	<div class="container">
 
-        <div class="row">
+		<div class="row">
 
-            <div class="col-md-12">
+			<div class="col-md-12">
 
-                <div class="title-icon pull-left">
-                    <i class="lni lni-database"></i>
-                    <span>Integração</span>
-                </div>
+				<div class="title-icon pull-left">
+					<i class="lni lni-database"></i>
+					<span>Integração</span>
+				</div>
 
-                <div class="bread-box pull-right">
-                    <div class="bread">
-                        <a href="<?php panel_url(); ?>"><i class="lni lni-home"></i></a>
-                        <span>/</span>
-                        <a href="<?php panel_url(); ?>/integracao">Integração</a>
-                    </div>
-                </div>
+				<div class="bread-box pull-right">
+					<div class="bread">
+						<a href="<?php panel_url(); ?>"><i class="lni lni-home"></i></a>
+						<span>/</span>
+						<a href="<?php panel_url(); ?>/integracao">Integração</a>
+					</div>
+				</div>
 
-            </div>
+			</div>
 
-        </div>
+		</div>
 
-        <div class="integracao">
+		<div class="integracao">
 
-            <div class="data box-white mt-16">
+			<div class="data box-white mt-16">
 
-                <div class="row">
+	            <div class="row">
 
-                    <div class="col-md-12">
+	              <div class="col-md-12">
 
-                        <div class="title-line pd-0">
-                            <i class="lni lni-instagram"></i>
-                            <span>Facebook / Instagram Shopping</span>
-                            <div class="clear"></div>
-                        </div>
+	                <div class="title-line pd-0">
+	                  <i class="lni lni-instagram"></i>
+	                  <span>Facebook / Instagram Shopping</span>
+	                  <div class="clear"></div>
+	                </div>
 
-                    </div>
+	              </div>
 
-                </div>
+	            </div>
+					
+				<!-- Sacolinha Instagram -->
+				<div class="row">
 
-                <!-- Sacolinha Instagram -->
-                <div class="row">
+					<div class="col-md-9">
 
-                    <div class="col-md-9">
+					<div class="form-field-default">
 
-                        <div class="form-field-default">
+						<label>URL de importação:</label>
+						<input id="copyme" type="text" value="<?php echo $meudominio; ?>/shopping.xml" DISABLED/>
 
-                            <label>URL de importação:</label>
-                            <input id="copyme" type="text" value="<?php echo $meudominio; ?>/shopping.xml" DISABLED />
+					</div>
 
-                        </div>
+					</div>
 
-                    </div>
+					<div class="col-md-3">
+						<label></label>
+						<button class="fullwidth" data-clipboard-text="<?php echo $meudominio; ?>/shopping.xml">
+							<span>
+								<i class="lni lni-clipboard"></i> Copiar
+							</span>
+						</button>
+					</div>
 
-                    <div class="col-md-3">
-                        <label></label>
-                        <button class="fullwidth" data-clipboard-text="<?php echo ($meudominio); ?>/shopping.xml">
-                            <span>
-                                <i class="lni lni-clipboard"></i> Copiar
-                            </span>
-                        </button>
-                    </div>
-
-                </div>
-                <!--
+				</div>
+			<!--
 				<div class="row">
 
 					<div class="col-md-9">
@@ -211,79 +211,76 @@ if (isset($formdata)) {
 
 				</div>
 			-->
-            </div>
+			</div>
 
-        </div>
+		</div>
 
-    </div>
+	</div>
 
-    <div class="container">
+	<div class="container">
 
+		
 
+		<div class="integracao">
 
-        <div class="integracao">
+			<div class="data box-white mt-16">
 
-            <div class="data box-white mt-16">
+	            <div class="row">
 
-                <div class="row">
+	              <div class="col-md-12">
 
-                    <div class="col-md-12">
+	                <div class="title-line pd-0">
+						<i class="lni lni-credit-cards"></i>
+	                  <span>Mercado Pago</span>
+	                  <div class="clear"></div>
+	                </div>
 
-                        <div class="title-line pd-0">
-                            <i class="lni lni-credit-cards"></i>
-                            <span>Mercado Pago</span>
-                            <div class="clear"></div>
-                        </div>
+	              </div>
 
-                    </div>
+	            </div>
+					
+				<!-- Mercado Pago -->
+				<div class="row">
 
-                </div>
+				<form id="the_form" class="form-default" method="POST" enctype="multipart/form-data">
 
-                <!-- Mercado Pago -->
-                <div class="row">
+					<div class="row">
 
-                    <form id="the_form" class="form-default" method="POST" enctype="multipart/form-data">
+						<div class="col-md-9">
+							<div class="form-field-default">
+								<label for="input-public-key">Sua Public Key:</label>
+								<input type="text" id="input-public-key" name="input-public-key" value="<?php echo $public_key; ?>">
 
-                        <div class="row">
+							</div>
+						</div>
 
-                            <div class="col-md-9">
-                                <div class="form-field-default">
-                                    <label for="input-public-key">Public Key:</label>
-                                    <input type="text" id="input-public-key" name="input-public-key"
-                                        value="<?php echo $public_key; ?>">
+						<div class="col-md-9">
+							<div class="form-field-default">
+								<label for="input-secret-key">Sua Secret Key:</label>
+								<input type="text" id="input-secret-key" name="input-secret-key" value="<?php echo $secret_key; ?>">
+							</div>
+						</div>
 
-                                </div>
-                            </div>
+						<div class="col-md-3">
+							<input type="hidden" name="formdata" value="true"/>
+							<div class="form-default form-field-submit">
+								<button class="pull-right">
+									<span>Salvar <i class="lni lni-chevron-right"></i></span>
+								</button>
+							</div>
+						</div>
 
-                            <div class="col-md-9">
-                                <div class="form-field-default">
-                                    <label for="input-secret-key">Secret Key:</label>
-                                    <input type="text" id="input-secret-key" name="input-secret-key"
-                                        placeholder="Digite sua secret key">
+					</div>
 
-                                </div>
-                            </div>
+				</form>
 
-                            <div class="col-md-3">
-                                <input type="hidden" name="formdata" value="true" />
-                                <div class="form-default form-field-submit">
-                                    <button class="pull-right">
-                                        <span>Salvar <i class="lni lni-chevron-right"></i></span>
-                                    </button>
-                                </div>
-                            </div>
+				</div>
 
-                        </div>
+			</div>
 
-                    </form>
+		</div>
 
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
+	</div>
 
 </div>
 
