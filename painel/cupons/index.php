@@ -23,8 +23,12 @@ $eid = $_SESSION['estabelecimento']['id'];
 
 // Variables
 
-$estabelecimento = mysqli_real_escape_string( $db_con, $_GET['estabelecimento_id'] );
-$codigo = mysqli_real_escape_string( $db_con, $_GET['codigo'] );
+// $estabelecimento = mysqli_real_escape_string( $db_con, $_GET['estabelecimento_id'] );
+$estabelecimento_id = $myArray['estabelecimento_id'] ?? 0;
+
+// $codigo = mysqli_real_escape_string( $db_con, $_GET['codigo'] );
+$codigo = $myArray['codigo'] ?? 0;
+
 
 $getdata = "";
 
@@ -37,10 +41,13 @@ foreach($_GET as $query_string_variable => $value) {
 // Config
 
 $limite = 20;
-$pagina = $_GET["pagina"] == "" ? 1 : $_GET["pagina"];
+// $pagina = $_GET["pagina"] == "" ? 1 : $_GET["pagina"];
+$pagina = isset($myArray['pagina']) ? $myArray['pagina'] : 1;
+
 $inicio = ($pagina * $limite) - $limite;
 
 // Query
+$query = "";
 
 $query .= "SELECT * FROM cupons ";
 
@@ -76,13 +83,13 @@ if( !$pagina OR $pagina > $total_paginas OR !is_numeric($pagina) ) {
 
 ?>
 
-<?php if( $_GET['msg'] == "erro" ) { ?>
+<?php if(isset( $_GET['msg']) == "erro" ) { ?>
 
 <?php modal_alerta("Erro, tente novamente!","erro"); ?>
 
 <?php } ?>
 
-<?php if( $_GET['msg'] == "sucesso" ) { ?>
+<?php if(isset( $_GET['msg']) == "sucesso" ) { ?>
 
 <?php modal_alerta("Ação efetuada com sucesso!","sucesso"); ?>
 
