@@ -8,7 +8,9 @@ $seo_keywords = "";
 // HEADER
 $system_header = "";
 // CHECK LOGGED
-if( $_SESSION['user']['logged'] == "1" ) {
+
+if( isset($_SESSION['user']) && $_SESSION['user']['logged'] == "1" ) {
+
 
 	if( $_SESSION['user']['level'] == "1" ) {
 		header("Location: ../administracao/inicio");
@@ -20,7 +22,7 @@ if( $_SESSION['user']['logged'] == "1" ) {
 
 }
 ?>
-
+<!-- Teste -->
 <!DOCTYPE html>
 <html>
 	<head>
@@ -69,14 +71,16 @@ if ("serviceWorker" in navigator) {
 </script>
 
 		<?php
+		$redirect = isset($_GET['redirect']) ? mysqli_real_escape_string($db_con, $_GET['redirect']) : '';
 
-		$redirect = mysqli_real_escape_string( $db_con, $_GET['redirect'] );
-		// if( !$redirect) {
-		// 	$redirect = ($_SERVER['HTTP_REFERER']);
+		// if( !$redirect ) {
+		//     $redirect = $_SERVER['HTTP_REFERER'];
 		// }
-		$email = strtolower( mysqli_real_escape_string( $db_con, $_POST['email'] ) );
-		$pass = mysqli_real_escape_string( $db_con, $_POST['pass'] );
-		$keepalive = mysqli_real_escape_string( $db_con, $_POST['keepalive'] );
+		
+		$email = isset($_POST['email']) ? strtolower(mysqli_real_escape_string($db_con, $_POST['email'])) : '';
+		$pass = isset($_POST['pass']) ? mysqli_real_escape_string($db_con, $_POST['pass']) : '';
+		$keepalive = isset($_POST['keepalive']) ? mysqli_real_escape_string($db_con, $_POST['keepalive']) : '';
+		
 		if( !$keepalive ) {
 			$keepalive = 0;
 		}
@@ -135,7 +139,8 @@ if ("serviceWorker" in navigator) {
 
 												</div>
 
-												<?php if(isset( $_GET['msg']) && $_GET['msg'] == "erro" ) { ?>
+												<?php if( isset($_GET['msg']) && $_GET['msg'] == "erro" ) { ?>
+
 
 												<div class="row">
 
@@ -152,7 +157,8 @@ if ("serviceWorker" in navigator) {
 
 												<?php } ?>
 
-												<?php if(isset( $_GET['msg']) && $_GET['msg'] == "alterada" ) { ?>
+												<?php if( isset($_GET['msg']) &&  $_GET['msg'] == "alterada" ) { ?>
+
 
 												<div class="row">
 
@@ -176,7 +182,8 @@ if ("serviceWorker" in navigator) {
 														<div class="form-field form-field-icon form-field-text">
 
 															<i class="form-icon lni lni-user"></i>
-															<input type="text" name="email" placeholder="E-mail" value="<?php echo htmlclean(isset( $_GET['email'])) ; ?>"/>
+															<input type="text" name="email" placeholder="E-mail" value="<?php echo isset($_GET['email']) ? htmlclean($_GET['email']) : ''; ?>"/>
+
 
 														</div>
 
@@ -234,7 +241,7 @@ if ("serviceWorker" in navigator) {
 
 															<a href="<?php just_url(); ?>/esqueci" class="text-center"><i class="lni lni-question-circle"></i> Esqueci minha senha?</a>
 
-															<a href="<?php just_url(); ?>" class="text-center"><i class="icone icone-sacola"></i> Voltar</a>
+															<a href="<?php just_url(); ?>/conheca" class="text-center"><i class="icone icone-sacola"></i> Voltar</a>
 
 															<!-- <a href="<?php just_url(); ?>/comece" class="text-center"><i class="lni lni-rocket"></i> Quero vender</a> -->
 
@@ -271,4 +278,3 @@ if ("serviceWorker" in navigator) {
 
 <script src="<?php just_url(); ?>/_core/_cdn/jquery/js/jquery.min.js"></script>
 <script src="<?php just_url(); ?>/_core/_cdn/panel/js/template.js"></script>
-
