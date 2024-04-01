@@ -2,11 +2,13 @@
 global $insubdominioid;
 global $insubdominiourl;
 global $httprotocol;
+var_dump("Subdominio ID: ".$insubdominioid);
+var_dump("Subdominio URL: ".$insubdominiourl);
 $define_query = mysqli_query( $db_con, "SELECT * FROM estabelecimentos WHERE id = '$insubdominioid' LIMIT 1");
 $define_data = mysqli_fetch_array( $define_query );
-
+// TODO: Investigar a ausência de $simple_url
 $app['url'] = $httprotocol.$insubdominiourl.".".$simple_url;
-
+var_dump("App URL: ".$app['url']);
 $app['type'] = "1";
 $app['id'] = $define_data['id'];
 

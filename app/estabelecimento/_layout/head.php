@@ -4,9 +4,9 @@ global $seo_subtitle;
 global $seo_description;
 global $seo_keywords;
 global $seo_image;
-
-$local = "0";
-$local = $_GET['local'];
+var_dump("Subdominio URL: ".$insubdominiourl);
+// $local = "0";
+$local = isset($_GET['local']) ? $_GET['local'] : '0';
 
 if( $local > 0 ) {
 $_SESSION["local"] = $local;
@@ -49,6 +49,10 @@ $_SESSION["local"] = $local;
     <script src="<?php echo $app['url']; ?>/_core/_cdn/fancybox/js/jquery.fancybox.min.js"></script>
     <!-- <script src="<?php echo $app['url']; ?>/_core/_cdn/instantclick/js/instantclick.min.js"></script> -->
     <script src="<?php echo $app['url']; ?>/app/estabelecimento/js/script.php?insubdominiourl=<?php echo $insubdominiourl; ?>&virtualpath=<?php echo $virtualpath; ?>"></script>
+    <!-- TODO: inserir o script de integração do mercado pago -->
+    <!-- Mercado Pago -->
+    <script src="https://sdk.mercadopago.com/js/v2">
+    </script>
     
     <?php system_header(); ?>
 
