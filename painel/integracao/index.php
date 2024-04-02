@@ -16,28 +16,41 @@ include('../_layout/sidebars.php');
 include('../_layout/modal.php');
 
 global $db_con;
-$eid = $_SESSION['estabelecimento']['id']; //estabelecimento logado
-$meudominio = $httprotocol.data_info("estabelecimentos",$_SESSION['estabelecimento']['id'],"subdominio").".".$simple_url;
 
-// Id do estabelecimento logado 
-$id = $_SESSION['estabelecimento']['id'];
+// ... (include files, establish database connection)
 
-// Variáveis de inicialização
-$public_key = "";
-$secret_key = "";
+$eid = isset($_SESSION['estabelecimento']['id']) ? $_SESSION['estabelecimento']['id'] : null; // Handle potential empty value
 
-// Consultar as chaves do banco de dados
-$sql = "SELECT public_key, secret_key FROM estabelecimentos WHERE id = ?";
-($db_con) ? $stmt = mysqli_prepare($db_con, $sql) : $stmt = '';
-mysqli_stmt_bind_param($stmt, "i", $id);
-mysqli_stmt_execute($stmt);
-$result = mysqli_stmt_get_result($stmt);
+if ($eid !== null) {
+    // Prepare the SQL statement (mitigate SQL injection)
+    $sql = "SELECT public_key, secret_key FROM estabelecimentos WHERE id = ?";
+    $stmt = mysqli_prepare($db_con, $sql);
 
-if (mysqli_num_rows($result) > 0) {
-    $row = mysqli_fetch_assoc($result);
-    $public_key = $row['public_key'];
-    $secret_key = $row['secret_key'];
+    // Bind parameters (if using prepared statements)
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "i", $eid);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+    } else {
+        // Handle prepared statement creation error (if applicable)
+        echo "Error creating prepared statement: " . mysqli_error($db_con);
+    }
+
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $public_key = $row['public_key'];
+        $secret_key = $row['secret_key'];
+    } else {
+        // Handle no rows found (optional)
+        // echo "No keys found for establishment ID: $eid";
+    }
+
+    // ... (rest of your code using $public_key and $secret_key)
+} else {
+    // Handle the case where $_SESSION['estabelecimento']['id'] is empty
+    echo "Establishment ID not found in session";
 }
+
 
 //var_dump($public_key);
 // Preenchimento dos campos do formulário
